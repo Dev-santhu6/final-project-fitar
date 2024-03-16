@@ -103,7 +103,7 @@
 
 import './App.css';
 import "@google/model-viewer/dist/model-viewer.min.js";
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import { Elements } from '@stripe/react-stripe-js';
@@ -144,7 +144,12 @@ function App() {
   // const isAdminPage = location.pathname.startsWith('/admin');
   // const [isAdmin, setIsAdmin] = useState(); 
   const isAdmin = localStorage.getItem("isAdmin") === "true";
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  useEffect(() => {
+    const userInfo = JSON.parse(localStorage.getItem('userinfo'));
+    setIsLoggedIn(userInfo ? true : false);
+  }, []);
   const [clickCount, setClickCount] = useState(0);
   const [isDarkMode, setIsDarkMode] = useState(false);
 
@@ -201,9 +206,13 @@ function App() {
       
         <Elements stripe={stripePromise}>
           <Routes>
-          <Route path="/Checkout" element={<Checkout/>} />
+          {/* <Route path="/Checkout" element={<Checkout/>} /> */}
           <Route path='/success' element={<Success/>}/>
           <Route path='/notfound' element={<NotFound/>}/>
+          <Route
+          path="/Checkout"
+          element={isLoggedIn ? <Checkout/> : <Navigate to="/login" />}
+        />
 
           </Routes>
         </Elements>

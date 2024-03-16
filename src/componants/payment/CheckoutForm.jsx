@@ -137,22 +137,21 @@ import './payment.css'; // Import the CSS file
 
 function CheckoutForm() {
   // const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const isFormFilled = localStorage.getItem('formFilled') === 'true';
+  // const isFormFilled = localStorage.getItem('formFilled') === 'true';
 
   // useEffect(() => {
   //   const userInfo = JSON.parse(localStorage.getItem('userinfo'));
   //   setIsLoggedIn(userInfo ? true : false);
   // }, []);
-  const isLoggedIn= localStorage.getItem("userinfo") === "true";
+  // const isLoggedIn= localStorage.getItem("userinfo") === "true";
 
-  const handlepay = () => {
-    if (isLoggedIn) {
-      window.location=('/Checkout');
+    // if (isLoggedIn) {
+    //   window.location=('/Checkout');
 
-    } else {
-      window.location=('/login');
-    }
-  };
+    // } else {
+    //   window.location=('/login');
+    // }
+
 
 
   const userdetail = JSON.parse(localStorage.getItem('userinfo'));
@@ -217,8 +216,12 @@ function CheckoutForm() {
 
       if (error) {
         console.error(error.message);
+        window.location="/notfound"
+
       } else {
         console.log('Payment successful');
+        window.location="/success"
+
       }
     } catch (error) {
       console.error(error.message);
@@ -226,7 +229,7 @@ function CheckoutForm() {
   };
 
   return (
-    <section className='payment'>
+    <section className='payment' style={{color:"black"}}>
     <div className="payment-container">
       <h2>Payment</h2>
       <form onSubmit={handleSubmit}>
@@ -260,7 +263,7 @@ function CheckoutForm() {
             }}
           />
         </div>
-        <button type="submit" disabled={!stripe} onClick={handlepay}>
+        <button type="submit" disabled={!stripe}>
           Pay
         </button>
       </form>
