@@ -167,7 +167,7 @@ function App() {
   return (
     <Router>
       <div className="App" onContextMenu={handleContextMenu} style={appStyle} >
-      <ToastContainer  theme="dark" />
+      <ToastContainer />
         <Navbar />
 
         <Routes>

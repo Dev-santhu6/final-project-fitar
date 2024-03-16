@@ -6,12 +6,15 @@ import { Link } from "react-router-dom";
 import axios from 'axios';
 import Footer from "../Footer/Footer";
 
-// import {  toast } from 'react-toastify';
-// import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const Login = () => {
     const [signInDetails, setsignInDetails] = useState({ email: "", password: "" });
     const [error, setError] = useState("");
+    const [successMessage, setSuccessMessage] = useState("");
+
 
     const handleOnChange = ({ currentTarget: input }) => {
         setsignInDetails({ ...signInDetails, [input.name]: input.value });
@@ -22,17 +25,23 @@ const Login = () => {
         try {
             const url = "http://localhost:5000/api/user/login";
             const { data } = await axios.post(url, signInDetails, { credentials: 'include'
-        });
+        });           
+        setSuccessMessage(data.message);
+        toast.success('Login successful!');
+
+
             console.log(data);
 
             // Store user info in localStorage
             localStorage.setItem("userinfo", JSON.stringify(signInDetails.email));
-
             // Check if the user is an admin
             const adminEmail = "muralisanthu696@gmail.com";
             if (signInDetails.email === adminEmail) {
                 localStorage.setItem("isAdmin", true);
             }
+
+
+
             window.location = "/";
             window.location.href = document.referrer;
         } catch (error) {
@@ -43,7 +52,7 @@ const Login = () => {
                 error.response.status <= 500
             ) {
                 setError(error.response.data.message);
-                // toast(error.response.data.message);
+                toast(error.response.data.message);
             }
         }
     };
@@ -63,7 +72,7 @@ const Login = () => {
                             onChange={handleOnChange}
                             value={signInDetails.email}
                         />
-                        <span><p className="error-paragraph">{error !== '' ? `Error: ${error}` : null}</p></span>
+                        {/* <span><p className="error-paragraph">{error !== '' ? `Error: ${error}` : null}</p></span> */}
                     </div>
                     <div className="input-div">
                         <label htmlFor="password">Password</label>

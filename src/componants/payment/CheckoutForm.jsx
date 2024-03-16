@@ -154,12 +154,7 @@ function CheckoutForm() {
     }
   };
 
-  // var handlepay = () => {
-  //   if ({isFormFilled}) {
-  //   } else {
-  //     window.location=('/login');
-  //   }
-  // };
+
   const userdetail = JSON.parse(localStorage.getItem('userinfo'));
   const [shop, setShop] = useState(null);
     const [error, setError] = useState('');
@@ -181,10 +176,7 @@ function CheckoutForm() {
     }
 }, [userdetail]);
 
-if (!isFormFilled) {
-  window.location="/services"
-  
-}
+
   const stripe = useStripe();
   const elements = useElements();
 
