@@ -96,6 +96,8 @@ function Navbar() {
     localStorage.removeItem('userinfo');
     setIsLoggedIn(false);
     localStorage.removeItem('isAdmin');
+    localStorage.removeItem('formFilled');
+
     window.location = "/"
   };
 

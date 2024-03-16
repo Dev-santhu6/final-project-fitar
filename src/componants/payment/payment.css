@@ -36,14 +36,14 @@
    */
 
 
-   .payment-container {
+   .payment .payment-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-top: 150px;
   }
   
-  .card-element {
+  .payment .card-element {
     margin-bottom: 20px;
     padding: 20px;
     border: 1px solid #ddd;
@@ -54,7 +54,7 @@
     flex-direction: column;
   }
   
-  .card-element input {
+  .payment .card-element input {
     margin-bottom: 10px;
     padding: 10px;
     border: none;
@@ -63,34 +63,34 @@
     width: 100%;
   }
   
-  .card-element label {
+  .payment .card-element label {
     margin-bottom: 5px;
     font-size: 14px;
   }
   
-  .card-number {
+  .payment .card-number {
     display: flex;
     justify-content: space-between;
     margin-bottom: 10px;
   }
   
-  .card-number input {
+  .payment .card-number input {
     width: calc(25% - 5px);
     margin-right: 5px;
   }
   
-  .card-cvc {
+  .payment .card-cvc {
     display: flex;
     justify-content: space-between;
     margin-bottom: 10px;
   }
   
-  .card-cvc input {
+  .payment .card-cvc input {
     width: calc(33% - 5px);
     margin-right: 5px;
   }
   
-  button {
+  .payment button {
     padding: 10px 20px;
     background-color: #4CAF50;
     color: white;
@@ -100,7 +100,7 @@
     font-size: 16px;
   }
   
-  button:disabled {
+  .payment button:disabled {
     background-color: #ccc;
     cursor: not-allowed;
   }

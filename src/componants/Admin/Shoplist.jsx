@@ -600,36 +600,53 @@ const ShopList = () => {
       </table>
     </div>
     {editFormData && (
-      <div className='edit-form' style={{marginTop:"50px",color:"black"}}>
-        <h3>Edit Shop</h3>
-        <form onSubmit={() => handleEditSubmit(editFormData.email)}>
+      <div className='edit-form' style={{ marginTop: "50px", color: "black", marginLeft: "20px"}}>
+      <h3>Edit Shop</h3>
+      <form onSubmit={() => handleEditSubmit(editFormData.email)}>
+        <div style={{ marginBottom: "10px" }}>
           <label htmlFor='ownername'>Owner Name:</label>
           <input type='text' name='ownername' value={editFormData.ownername} onChange={handleEditFormChange} />
-
+        </div>
+    
+        <div style={{ marginBottom: "10px" }}>
           <label htmlFor='owneremail'>Owner Email:</label>
           <input type='text' name='owneremail' value={editFormData.owneremail} onChange={handleEditFormChange} />
-
+        </div>
+    
+        <div style={{ marginBottom: "10px" }}>
           <label htmlFor='owneraddress'>Owner Address:</label>
           <input type='text' name='owneraddress' value={editFormData.owneraddress} onChange={handleEditFormChange} />
-
+        </div>
+    
+        <div style={{ marginBottom: "10px" }}>
           <label htmlFor='ownerphonenumber'>Owner Phone Number:</label>
           <input type='text' name='ownerphonenumber' value={editFormData.ownerphonenumber} onChange={handleEditFormChange} />
-
+        </div>
+    
+        <div style={{ marginBottom: "10px" }}>
           <label htmlFor='shopname'>Shop Name:</label>
           <input type='text' name='shopname' value={editFormData.shopname} onChange={handleEditFormChange} />
-
+        </div>
+    
+        <div style={{ marginBottom: "10px" }}>
           <label htmlFor='shopaddress'>Shop Address:</label>
           <input type='text' name='shopaddress' value={editFormData.shopaddress} onChange={handleEditFormChange} />
-
+        </div>
+    
+        <div style={{ marginBottom: "10px" }}>
           <label htmlFor='shopphonenumber'>Shop Phone Number:</label>
           <input type='text' name='shopphonenumber' value={editFormData.shopphonenumber} onChange={handleEditFormChange} />
-
+        </div>
+    
+        <div style={{ marginBottom: "10px" }}>
           <label htmlFor='shopwebsiteURL'>Shop Web URL:</label>
           <input type='text' name='shopwebsiteURL' value={editFormData.shopwebsiteURL} onChange={handleEditFormChange} />
-
-          <button type='submit'>Save Changes</button>
-        </form>
-      </div>
+        </div>
+    
+        <button type='submit' className='btn btn-info btn-sm' style={{marginLeft:"200px"}}>Save Changes</button>
+      </form>
+    </div>
+    
     )}
     </section>
   );

@@ -14,7 +14,7 @@ function Header() {
   };
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const isAdmin = localStorage.getItem("isAdmin") === "true";
+  // const isAdmin = localStorage.getItem("isAdmin") === "true";
 
   useEffect(() => {
     const userInfo = JSON.parse(localStorage.getItem('userinfo'));
@@ -42,6 +42,8 @@ function Header() {
           <li><Link class="nav-link scrollto" to="/admin/releses">Releases</Link></li>
           {/* <li><Link class="nav-link scrollto" to="/blog">BLOGS</Link></li> */}
           <li><Link class="nav-link  scrollto" to="/admin/review">REVIEW</Link></li>
+                    <li><Link class="nav-link scrollto" to="/admin/payments">Payment</Link></li>
+
 {      !isLoggedIn ?(<li> <button></button></li>)  : (<li> <button className="getstarted scrollto running-border" onClick={handleLogout} style={{ backgroundColor: "transparent" }}>Logout</button></li>)
 }
         </ul>

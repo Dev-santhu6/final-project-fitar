@@ -36,6 +36,8 @@ const Shopform = ({ onClose }) => {
       const response = await axios.post('http://localhost:5000/api/user/shopregister', shopDetails);
       console.log(response.data); // Handle success response
       onClose();
+      localStorage.setItem('formFilled', 'true');
+
     } catch (error) {
       console.error('Error:', error.response.data); // Handle error response
       // setError(error.response.data.message);

@@ -8,6 +8,7 @@ import UserList from "./Userlist";
 import ShopList from './Shoplist';
 import ImageUpload from "./releases";
 import Review from "./Review";
+import PaymentList from "./payment";
 
 
 function Admin() {
@@ -20,6 +21,8 @@ function Admin() {
       <Route path="/shoplist" element={<ShopList/>} />
       <Route path="/releses" element={<ImageUpload/>} />
       <Route path="/review" element={<Review/>} />
+      <Route path="/payments" element={<PaymentList/>} />
+
 
 
 

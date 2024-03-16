@@ -96,8 +96,16 @@ body{
   .release .image-item p {
       word-wrap: break-word;
 
-
+      
   }
+
+.edit-form{
+  border: 2px solid black;
+  text-align: left;
+  width: 30%;
+}
+
+
   
   @media (max-width: 768px) {
     .image-upload-container {

@@ -1,210 +1,3 @@
-// // // import React from 'react';
-// // // import { CardElement, useStripe } from '@stripe/react-stripe-js';
-// // // import axios from 'axios';
-
-// // // const CheckoutForm = () => {
-// // //   const stripe = useStripe();
-
-// // //   const handleSubmit = async (e) => {
-// // //     e.preventDefault();
-// // //     const { token } = await stripe.createToken();
-
-// // //     try {
-// // //       const response = await axios.post('http://localhost:5000/api/payment/payment', {
-// // //         amount: 1000, // Example amount (in cents)
-// // //         currency: 'usd',
-// // //         paymentMethodId: token.id,
-// // //       });
-
-// // //       console.log(response.data);
-// // //     } catch (err) {
-// // //       console.error(err.response.data.error);
-// // //     }
-// // //   };
-
-// // //   return (
-// // //     <form onSubmit={handleSubmit}>
-// // //       <CardElement />
-// // //       <button type="submit">Pay</button>
-// // //     </form>
-// // //   );
-// // // };
-
-// // // export default CheckoutForm;
-
-// // // CheckoutForm.jsx
-// // // components/CheckoutForm.js
-
-// // // import React from 'react';
-// // // import { useStripe, useElements, CardElement } from '@stripe/react-stripe-js';
-// // // import axios from 'axios';
-
-// // // const CheckoutForm = () => {
-// // //   const stripe = useStripe();
-// // //   const elements = useElements();
-
-// // //   const handleSubmit = async (e) => {
-// // //     e.preventDefault();
-
-// // //     if (!stripe || !elements) {
-// // //       console.error('Stripe.js has not yet loaded.');
-// // //       return;
-// // //     }
-
-// // //     const cardElement = elements.getElement(CardElement);
-
-// // //     if (!cardElement) {
-// // //       console.error('Card element not found.');
-// // //       return;
-// // //     }
-
-// // //     const { token, error } = await stripe.createToken(cardElement);
-
-// // //     if (error) {
-// // //       console.error(error.message);
-// // //       return;
-// // //     }
-
-// // //     try {
-// // //       const response = await axios.post('http://localhost:5000/api/payment/payments', {
-// // //         amount: 1000, // Example amount (in cents)
-// // //         currency: 'usd',
-// // //         token: token.id,
-// // //       });
-
-// // //       console.log(response.data);
-// // //     } catch (err) {
-// // //       console.error(err.response.data.error);
-// // //     }
-// // //   };
-
-// // //   return (
-// // //     <form onSubmit={handleSubmit}>
-// // //       <CardElement />
-// // //       <button type="submit">Pay</button>
-// // //     </form>
-// // //   );
-// // // };
-
-// // // export default CheckoutForm;
-
-// // import React, { useState } from 'react';
-// // import { useStripe, useElements, CardElement } from '@stripe/react-stripe-js';
-// // import axios from 'axios';
-// // // import { useHistory } from 'react-router-dom';
-
-// // const CheckoutForm = () => {
-// //   const stripe = useStripe();
-// //   const elements = useElements();
-// //   const [message, setMessage] = useState('');
-
-// //   const handleSubmit = async (e) => {
-// //     e.preventDefault();
-
-// //     if (!stripe || !elements) {
-// //       console.error('Stripe.js has not yet loaded.');
-// //       return;
-// //     }
-
-// //     const cardElement = elements.getElement(CardElement);
-
-// //     if (!cardElement) {
-// //       console.error('Card element not found.');
-// //       return;
-// //     }
-
-// //     const { token, error } = await stripe.createToken(cardElement);
-
-// //     if (error) {
-// //       console.error(error.message);
-// //       return;
-// //     }
-
-// //     try {
-// //       const response = await axios.post('http://localhost:5000/api/payment/payments', {
-// //         amount: 1000, // Example amount (in cents)
-// //         currency: 'usd',
-// //         token: token.id,
-// //       });
-
-// //       setMessage('Payment successful. Redirecting...');
-// //       setTimeout(() => {
-// //          window.location = ('/success');
-// //       }, 3000);
-// //     } catch (err) {
-// //       setMessage('Payment failed. Redirecting...');
-// //       setTimeout(() => {
-// //          window.location = ('/notfound');
-// //       }, 3000);
-// //     }
-// //   };
-
-// //   return (
-// //     <div className='payment'>
-// //     <div className="form-container">
-// //       <form onSubmit={handleSubmit}>
-// //         <CardElement />
-// //         <button type="submit" className="button">Pay</button>
-// //       </form>
-// //       {message && <div className={`message ${message.includes('successful') ? 'success' : 'error'}`}>{message}</div>}
-// //     </div>
-// //     </div>
-// //   );
-// // };
-
-// // export default CheckoutForm;
-
-// // import React, { useState } from 'react';
-// // import { useStripe, useElements, CardElement } from '@stripe/react-stripe-js';
-
-// // const PaymentForm = ({ clientSecret }) => {
-// //   const stripe = useStripe();
-// //   const elements = useElements();
-// //   const [error, setError] = useState(null);
-
-// //   const handleSubmit = async (event) => {
-// //     event.preventDefault();
-
-// //     if (!stripe || !elements || !clientSecret) {
-// //       return;
-// //     }
-  
-// //     const { error, paymentIntent } = await stripe.confirmCardPayment(clientSecret, {
-// //       payment_method: {
-// //         card: elements.getElement(CardElement),
-// //         billing_details: {
-// //           name: 'John Doe',
-// //         },
-// //       },
-// //     });
-   
-// //     if (error) {
-// //       setError(error.message);
-// //       setTimeout(() => {
-// //         window.location='/notfound'; // Redirect to notfound page after 3 seconds
-// //       }, 1000);
-// //     } else {
-// //       // Payment successful
-// //       setTimeout(() => {
-// //         window.location=('/success'); // Redirect to success page after 3 seconds
-// //       }, 1000);
-// //     }
-// //   };
-
-// //   return (
-// //     <form onSubmit={handleSubmit} style={{marginTop:"100px"}}>
-// //       <CardElement />
-// //       <button type="submit" disabled={!stripe}>
-// //         Pay
-// //       </button>
-// //       {error && <div>{error}</div>}
-// //     </form>
-// //   );
-// // };
-
-// // export default PaymentForm;
-
-
 
 // import React from 'react';
 // import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
@@ -343,6 +136,26 @@ import axios from 'axios';
 import './payment.css'; // Import the CSS file
 
 function CheckoutForm() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const isFormFilled = localStorage.getItem('formFilled') === 'true';
+
+  useEffect(() => {
+    const userInfo = JSON.parse(localStorage.getItem('userinfo'));
+    setIsLoggedIn(userInfo ? true : false);
+  }, []);
+  var handlepay = () => {
+    if ({isLoggedIn}) {
+    } else {
+      window.location=('/login');
+    }
+  };
+
+  // var handlepay = () => {
+  //   if ({isFormFilled}) {
+  //   } else {
+  //     window.location=('/login');
+  //   }
+  // };
   const userdetail = JSON.parse(localStorage.getItem('userinfo'));
   const [shop, setShop] = useState(null);
     const [error, setError] = useState('');
@@ -392,6 +205,7 @@ function CheckoutForm() {
         shopName: `${shop.shopname}`,
         ownerAddress: `${shop.owneraddress}`,
         shopAddress: `${shop.shopaddress}`,
+        owneremail:`${shop.owneremail}`,
         price: 40000 // Example price in cents
       });
 
@@ -412,21 +226,25 @@ function CheckoutForm() {
   };
 
   return (
+    <section className='payment'>
     <div className="payment-container">
       <h2>Payment</h2>
       <form onSubmit={handleSubmit}>
         <div className="card-element">
-          <label htmlFor="shopOwnerName">Shop Owner Name</label>
-          <input type="text" id="shopOwnerName" name="shopOwnerName" />
+        <label htmlFor="shopOwnerName">Shop Owner Name</label>
+<input type="text" id="shopOwnerName" name="shopOwnerName" defaultValue={shop ? shop.ownername : ''} />
 
-          <label htmlFor="shopName">Shop Name</label>
-          <input type="text" id="shopName" name="shopName" />
+<label htmlFor="shopName">Shop Name</label>
+<input type="text" id="shopName" name="shopName" defaultValue={shop ? shop.shopname : ''} />
 
-          <label htmlFor="ownerAddress">Owner Address</label>
-          <input type="text" id="ownerAddress" name="ownerAddress" />
+<label htmlFor="ownerAddress">Owner Address</label>
+<input type="text" id="ownerAddress" name="ownerAddress" defaultValue={shop ? shop.owneraddress : ''} />
 
-          <label htmlFor="shopAddress">Shop Address</label>
-          <input type="text" id="shopAddress" name="shopAddress" />
+<label htmlFor="shopAddress">Shop Address</label>
+<input type="text" id="shopAddress" name="shopAddress" defaultValue={shop ? shop.shopaddress : ''} />
+
+<label htmlFor="owneremail">Owner Email</label>
+<input type="text" id="owneremail" name="owneremail" defaultValue={shop ? shop.owneremail : ''} />
 
           <label htmlFor="cardNumber">Card details</label>
           <CardElement
@@ -442,11 +260,12 @@ function CheckoutForm() {
             }}
           />
         </div>
-        <button type="submit" disabled={!stripe}>
+        <button type="submit" disabled={!stripe} onClick={handlepay}>
           Pay
         </button>
       </form>
     </div>
+    </section>
   );
 }
 

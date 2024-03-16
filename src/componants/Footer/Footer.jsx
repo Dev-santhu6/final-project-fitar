@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React,{useState,useEffect} from "react";
 // import { Link } from "react-router-dom";
 // import { createBrowserHistory } from 'history';
 // import axios from "axios";
@@ -6,10 +6,24 @@ import React,{useState} from "react";
 function Footer() {
   const [email, setEmail] = useState('');
   // const history = createBrowserHistory();
+  const Email=JSON.parse(localStorage.getItem('userinfo'))
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const userInfo = JSON.parse(localStorage.getItem('userinfo'));
+    setIsLoggedIn(userInfo ? true : false);
+  }, []);
+  const handlesubscribe = () => {
+    if (isLoggedIn) {
+      window.location=('/feedback');
+    } else {
+      window.location=('/login');
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    window.location =(`/feedback?email=${email}`)
+    window.location =(`/feedback?Email=${Email}`)
 
 
     // try {
@@ -25,6 +39,7 @@ function Footer() {
     // } catch (error) {
     //   console.error('Failed to save email', error);
     // }
+   
   };
     return (
       <div className="Footer" style={{display:"grid"}}>
@@ -50,9 +65,8 @@ function Footer() {
         <ul>
           <li><i class="bx bx-chevron-right"></i> <a href="/">Home</a></li>
           <li><i class="bx bx-chevron-right"></i> <a href="/about">About us</a></li>
-          <li><i class="bx bx-chevron-right"></i> <a href="/">Services</a></li>
+          <li><i class="bx bx-chevron-right"></i> <a href="/services">Services</a></li>
           <li><i class="bx bx-chevron-right"></i> <a href="/demo">Demo</a></li>
-          <li><i class="bx bx-chevron-right"></i> <a href="/feedback">Feedback</a></li>
         </ul>
       </div>
 
@@ -70,10 +84,10 @@ function Footer() {
         <h4>Give A Feedback For Our Future Work</h4>
         <form action="" method="post" onSubmit={handleSubmit}>
           <input type="email" name="email" 
-          value={email}
+          value={Email}
         onChange={(e) => setEmail(e.target.value)}
         required
-     style={{border:"none",outline:"none"}} />  <input type="submit" value="Subscribe"/> 
+     style={{border:"none",outline:"none"}} />  <input type="submit" value="Subscribe" onClick={handlesubscribe}/> 
         </form>
       </div>
 
