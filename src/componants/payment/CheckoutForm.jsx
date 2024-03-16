@@ -136,15 +136,19 @@ import axios from 'axios';
 import './payment.css'; // Import the CSS file
 
 function CheckoutForm() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  // const [isLoggedIn, setIsLoggedIn] = useState(false);
   const isFormFilled = localStorage.getItem('formFilled') === 'true';
 
-  useEffect(() => {
-    const userInfo = JSON.parse(localStorage.getItem('userinfo'));
-    setIsLoggedIn(userInfo ? true : false);
-  }, []);
-  var handlepay = () => {
-    if ({isLoggedIn}) {
+  // useEffect(() => {
+  //   const userInfo = JSON.parse(localStorage.getItem('userinfo'));
+  //   setIsLoggedIn(userInfo ? true : false);
+  // }, []);
+  const isLoggedIn= localStorage.getItem("userinfo") === "true";
+
+  const handlepay = () => {
+    if (isLoggedIn) {
+      window.location=('/Checkout');
+
     } else {
       window.location=('/login');
     }
@@ -177,6 +181,10 @@ function CheckoutForm() {
     }
 }, [userdetail]);
 
+if (!isFormFilled) {
+  window.location="/services"
+  
+}
   const stripe = useStripe();
   const elements = useElements();
 
