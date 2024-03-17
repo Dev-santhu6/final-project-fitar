@@ -1,5 +1,4 @@
 
-
 import React, { useState } from "react";
 import "./SignIn.css";
 import { Link } from "react-router-dom";
@@ -24,10 +23,13 @@ const Login = () => {
         e.preventDefault();
         try {
             const url = "http://localhost:5000/api/user/login";
-            const { data } = await axios.post(url, signInDetails, { credentials: 'include'
-        });           
-        setSuccessMessage(data.message);
-        toast.success('Login successful!');
+            const { data } = await axios.post(url, signInDetails, {
+                credentials: 'include'
+            });
+            setSuccessMessage(data.message);
+            // toast.success('Login successful!');
+            toast.success(data.message);
+
 
 
             console.log(data);
@@ -46,7 +48,7 @@ const Login = () => {
             window.location.href = document.referrer;
         } catch (error) {
             if (
-                
+
                 error.response &&
                 error.response.status >= 400 &&
                 error.response.status <= 500
@@ -84,7 +86,7 @@ const Login = () => {
                             onChange={handleOnChange}
                             value={signInDetails.password}
                         />
-                                                <span><p className="error-paragraph">{error !== '' ? `Error: ${error}` : null}</p></span>
+                        <span><p className="error-paragraph">{error !== '' ? `Error: ${error}` : null}</p></span>
                     </div>
                     <button className="sign-in-button running-border">Sign in</button>
                     <p className="sign-in-redirect-p">Don't have an account? <Link to="/sign-up">Sign up</Link></p>

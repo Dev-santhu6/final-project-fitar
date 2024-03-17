@@ -1,4 +1,3 @@
-// UserList.jsx
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import "../Admin/admin.css"

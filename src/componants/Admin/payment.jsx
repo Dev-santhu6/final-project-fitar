@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -29,14 +30,14 @@ function PaymentTable() {
   const handleUpdate = async (owneremail, isPaid) => {
     try {
       const response = await axios.put(`http://localhost:5000/api/payment/payments/${owneremail}`, { isPaid });
-      setPayments(payments.map((payment) => payment.owneremail === owneremail ? { ...payment, isPaid: response.data.isPaid } : payment));
+      setPayments(payments.map((payment) => payment.owneremail === owneremail ? { ...payment, isPaid: true } : payment));
     } catch (error) {
       console.error('Error updating payment:', error);
     }
   };
 
   return (
-    <table style={{marginTop:"100px",color:"black"}}>
+    <table style={{ marginTop: "100px", color: "black" }}>
       <thead>
         <tr>
           <th>Shop Owner Name</th>
@@ -73,3 +74,4 @@ function PaymentTable() {
 }
 
 export default PaymentTable;
+

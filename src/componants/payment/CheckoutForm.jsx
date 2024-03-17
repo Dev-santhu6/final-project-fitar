@@ -1,135 +1,4 @@
 
-// import React from 'react';
-// import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
-// import axios from 'axios';
-
-// function CheckoutForm() {
-//   const stripe = useStripe();
-//   const elements = useElements();
-
-//   const handleSubmit = async (event) => {
-//     event.preventDefault();
-
-//     if (!stripe || !elements) {
-//       return;
-//     }
-
-//     const cardElement = elements.getElement(CardElement);
-
-//     const { error, paymentMethod } = await stripe.createPaymentMethod({
-//       type: 'card',
-//       card: cardElement,
-//     });
-
-//     if (error) {
-//       console.error(error.message);
-//       return;
-//     }
-
-//     try {
-//       const response = await axios.post('http://localhost:5000/api/payment/pay', {
-//         shopOwnerName: 'your_shop_owner_name_here',
-//         shopName: 'your_shop_name_here',
-//         ownerAddress: 'your_owner_address_here',
-//         shopAddress: 'your_shop_address_here',
-//         price: 1000 // Example price in cents
-//       });
-
-//       const { clientSecret } = response.data;
-
-//       const { error } = await stripe.confirmCardPayment(clientSecret, {
-//         payment_method: paymentMethod.id
-//       });
-
-//       if (error) {
-//         console.error(error.message);
-//       } else {
-//         console.log('Payment successful');
-//       }
-//     } catch (error) {
-//       console.error(error.message);
-//     }
-//   };
-
-//   return (
-//     <form onSubmit={handleSubmit} style={{marginTop:"100px",color:"black"}}>
-//       <CardElement />
-//       <button type="submit" disabled={!stripe}>
-//         Pay
-//       </button>
-//     </form>
-//   );
-// }
-
-// export default CheckoutForm;
-
-
-// import React from 'react';
-// import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
-// import axios from 'axios';
-// import './payment.css'; // Import the CSS file
-
-// function CheckoutForm() {
-//   const stripe = useStripe();
-//   const elements = useElements();
-
-//   const handleSubmit = async (event) => {
-//     event.preventDefault();
-
-//     if (!stripe || !elements) {
-//       return;
-//     }
-
-//     const cardElement = elements.getElement(CardElement);
-
-//     const { error, paymentMethod } = await stripe.createPaymentMethod({
-//       type: 'card',
-//       card: cardElement,
-//     });
-
-//     if (error) {
-//       console.error(error.message);
-//       return;
-//     }
-
-//     try {
-//       const response = await axios.post('http://localhost:5000/api/payment/pay', {
-//         shopOwnerName: 'your_shop_owner_name_here',
-//         shopName: 'your_shop_name_here',
-//         ownerAddress: 'your_owner_address_here',
-//         shopAddress: 'your_shop_address_here',
-//         price: 1000 // Example price in cents
-//       });
-
-//       const { clientSecret } = response.data;
-
-//       const { error } = await stripe.confirmCardPayment(clientSecret, {
-//         payment_method: paymentMethod.id
-//       });
-
-//       if (error) {
-//         console.error(error.message);
-//       } else {
-//         console.log('Payment successful');
-//       }
-//     } catch (error) {
-//       console.error(error.message);
-//     }
-//   };
-
-//   return (
-//     <form onSubmit={handleSubmit} style={{marginTop:"150px"}}>
-//       <CardElement />
-//       <button type="submit" disabled={!stripe}>
-//         Pay
-//       </button>
-//     </form>
-//   );
-// }
-
-// export default CheckoutForm;
-
-
 import React, { useState, useEffect } from 'react';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import axios from 'axios';
@@ -234,19 +103,19 @@ function CheckoutForm() {
       <h2>Payment</h2>
       <form onSubmit={handleSubmit}>
         <div className="card-element">
-        <label htmlFor="shopOwnerName">Shop Owner Name</label>
+        <label >Shop Owner Name</label>
 <input type="text" id="shopOwnerName" name="shopOwnerName" defaultValue={shop ? shop.ownername : ''} />
 
-<label htmlFor="shopName">Shop Name</label>
+<label >Shop Name</label>
 <input type="text" id="shopName" name="shopName" defaultValue={shop ? shop.shopname : ''} />
 
-<label htmlFor="ownerAddress">Owner Address</label>
+<label >Owner Address</label>
 <input type="text" id="ownerAddress" name="ownerAddress" defaultValue={shop ? shop.owneraddress : ''} />
 
-<label htmlFor="shopAddress">Shop Address</label>
+<label >Shop Address</label>
 <input type="text" id="shopAddress" name="shopAddress" defaultValue={shop ? shop.shopaddress : ''} />
 
-<label htmlFor="owneremail">Owner Email</label>
+<label >Owner Email</label>
 <input type="text" id="owneremail" name="owneremail" defaultValue={shop ? shop.owneremail : ''} />
 
           <label htmlFor="cardNumber">Card details</label>
