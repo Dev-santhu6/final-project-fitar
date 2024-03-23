@@ -22,7 +22,7 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const url = "http://localhost:5000/api/user/login";
+            const url = "https://project-fitar-backend-oaff.vercel.app/login";
             const { data } = await axios.post(url, signInDetails, {
                 credentials: 'include'
             });
