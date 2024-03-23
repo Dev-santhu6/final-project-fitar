@@ -3,7 +3,8 @@ import "./SignUp.css";
 import { Link } from "react-router-dom";
 import axios from 'axios';
 import Footer from "../Footer/Footer";
-
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const SignUp = () => {
     const [userDetails, setuserDetails] = useState({ name: "", email: "", password: "", confirm_password: "" });
     const [error, setError] = useState("");
@@ -18,6 +19,7 @@ const SignUp = () => {
 
         if (userDetails.password !== userDetails.confirm_password) {
             setError("doesn't match confirm_password")
+            toast("doesn't match confirm_password")
             return;
         }
         if (userDetails.password.length < 8) {

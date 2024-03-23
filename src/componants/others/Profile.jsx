@@ -276,6 +276,8 @@ const Profile = () => {
     const [user, setUser] = useState(null);
     const [shop, setShop] = useState(null);
     const [error, setError] = useState('');
+    const [images, setImages] = useState([]);
+
     const [showDetails, setShowDetails] = useState(false);
     const [editMode, setEditMode] = useState(false);
     const [updatedShop, setUpdatedShop] = useState({
@@ -320,6 +322,17 @@ const Profile = () => {
         }
     }, [userdetail]);
 
+    useEffect(() => {
+        const fetchImages = async () => {
+          try {
+            const response = await axios.get('http://localhost:5000/api/admin/getimages');
+            setImages(response.data?.images || []);
+          } catch (error) {
+            console.error('Error fetching images:', error);
+          }
+        };
+        fetchImages();
+      }, []);
     const toggleDetails = () => {
         setShowDetails(!showDetails);
     };
@@ -348,7 +361,22 @@ const Profile = () => {
             <div className='details-container'>
                 <div className='user-details'>
                     <button className='user-icon' onClick={toggleDetails}>
-                        <FontAwesomeIcon icon={faUser} size='3x' />
+                        {/* <FontAwesomeIcon icon={faUser} size='3x' /> */}
+                        {images.map((image) => (
+            <div key={image._id} className="image-item" > 
+              <div className='releaseimage'>
+                <img
+                  src={image.url}
+                  alt={image}
+                  style={{ cursor: 'pointer',height:"150px",width:"150px" }}
+                /> <br />
+                {/* <span className='blink' onClick={() => handleimageClick(image)}>click me!</span> */}
+              </div>
+            
+
+            </div>
+            
+          ))}
                     </button>
                     {user && (
                         <div className='userpara'>
